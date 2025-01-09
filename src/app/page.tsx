@@ -14,7 +14,10 @@ export default async function Home() {
     fetchPolicy: "no-cache", // TODO: explore caching options
   });
 
-  if (!_client) return null;
+  if (!_client) {
+    console.warn("Apollo client is undefined.");
+    return null;
+  }
 
   const { data } = _client;
 

@@ -16,7 +16,10 @@ export default async function Posts({
     fetchPolicy: "no-cache", // TODO: explore caching options
   });
 
-  if (!_client) return null;
+  if (!_client) {
+    console.warn("Apollo client is undefined.");
+    return null;
+  }
 
   const { data } = _client;
 
@@ -32,7 +35,10 @@ export default async function Posts({
       <p className="mb-8 mt-2 text-sm text-gray-400 sm:mb-10 sm:mt-4 sm:text-base">
         By Dusti Johnson on {formattedDate}
       </p>
-      <Markdown remarkPlugins={[remarkGfm]} className="prose md:prose-lg lg:prose-xl font-geist-sans">
+      <Markdown
+        remarkPlugins={[remarkGfm]}
+        className="prose md:prose-lg lg:prose-xl font-geist-sans"
+      >
         {post.content}
       </Markdown>
     </div>
