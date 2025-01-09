@@ -14,12 +14,13 @@ export default async function Home() {
     fetchPolicy: "no-cache", // TODO: explore caching options
   });
 
-  if (!_client) {
-    console.warn("Apollo client is undefined.");
-    return null;
-  }
+  let data = null;
 
-  const { data } = _client;
+  if (_client) {
+    data = _client?.data;
+  } else {
+    console.warn("Apollo client is undefined.");
+  }
 
   return (
     <main>
@@ -27,23 +28,32 @@ export default async function Home() {
         Welcome to Dusti's blog!
       </h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tincidunt,
-        urna non hendrerit malesuada, diam diam euismod risus, ac consectetur
-        tortor nunc ac magna. Pellentesque non risus ut eros condimentum
-        fringilla ac eget orci. In euismod nunc non lectus cursus, ac molestie
-        sem fermentum. Sed imperdiet augue quis libero bibendum, a scelerisque
-        libero ultricies. Donec suscipit magna nibh, sed mattis diam efficitur
-        sit amet. Curabitur consectetur risus et metus aliquam cursus. Proin
-        turpis urna, volutpat eget sodales id, dignissim sit amet quam. Nulla
-        gravida massa sed augue ornare, sit amet maximus leo dignissim.
-        Vestibulum fermentum, nunc non molestie pharetra, nibh erat eleifend
-        lectus, eu tincidunt turpis odio a nisl. Duis tempus faucibus bibendum.
-        Proin sit amet dui magna. Donec varius vitae sapien non laoreet.
+        Hey there, and welcome to my blog! I’m Dusti Johnson, a computer
+        information science undergraduate with a passion for all things
+        programming. My coding journey started in 2020 when I picked up Python
+        to create a budget app for myself. What began as a simple project
+        quickly turned into an obsession&mdash;I became addicted to the
+        fulfillment from solving problems and building something from scratch.
+        From there, I dove into web development, mastering tools like Next.js
+        and TypeScript. As a student, I’ve also discovered a love for Java. Its
+        type-safe structure aligns perfectly with my preference for clean,
+        logical programming, making it a natural fit.
+      </p>
+      <p>
+        Along the way, I’ve realized that becoming a great software developer
+        isn’t just about writing better code&mdash;it’s about continuous
+        learning, refining habits, and fostering a growth mindset. This blog is
+        my way of documenting the process, sharing insights, and connecting with
+        others who are as excited about learning as I am. Here, you’ll find
+        posts ranging from programming techniques and computer science concepts
+        to life lessons and book takeaways. Thanks for stopping by&mdash;I hope
+        you find value in what I share and maybe even a bit of inspiration to
+        fuel your own journey!
       </p>
       <div className="mt-12">
-        <h2 className="text-2xl font-bold tracking-tight">All posts</h2>
+        <h2 className="text-2xl font-bold tracking-tight">Recent posts</h2>
         <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {data.blogPosts.map((post: Post, index: number) => {
+          {data && data.blogPosts.map((post: Post, index: number) => {
             return (
               <Card key={index} className="hover:shadow-md">
                 <Link href={"posts/" + post.urlSlug}>

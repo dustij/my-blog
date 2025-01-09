@@ -6,11 +6,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* p {
-  @apply mb-4;
+p {
+  @apply mb-4 text-base md:text-lg lg:text-xl;
 }
 
-h1,
+/*h1,
 h2,
 h3,
 h4,
