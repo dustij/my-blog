@@ -10,11 +10,15 @@ export default async function Posts({
 }) {
   const urlSlug = (await params).slug;
 
-  const { data } = await client.query({
+  const _client = await client.query({
     query: GET_SINGLE_POST,
     variables: { urlSlug },
-    fetchPolicy: "no-cache", // TODO: explore caching optoins
+    fetchPolicy: "no-cache", // TODO: explore caching options
   });
+
+  if (!_client) return null;
+
+  const { data } = _client;
 
   const post = data.blogPosts[0];
   const date = new Date(post.updatedAt);
