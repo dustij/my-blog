@@ -10,7 +10,7 @@ export default async function Posts({
 }) {
   const urlSlug = (await params).slug;
 
-  const { loading, error, data } = await client.query({
+  const { data } = await client.query({
     query: GET_SINGLE_POST,
     variables: { urlSlug },
     fetchPolicy: "no-cache", // TODO: explore caching optoins

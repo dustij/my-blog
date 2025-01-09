@@ -9,7 +9,7 @@ import { client } from "~/lib/apollo-client";
 import { GET_ALL_POSTS, Post } from "~/lib/gueries";
 
 export default async function Home() {
-  const { loading, error, data } = await client.query({
+  const { data } = await client.query({
     query: GET_ALL_POSTS,
     fetchPolicy: "no-cache",
   });
