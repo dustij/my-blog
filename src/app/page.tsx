@@ -60,7 +60,10 @@ export default async function Home() {
             data.blogPosts.map((post: Post, index: number) => {
               return (
                 index < 3 && (
-                  <Card key={index} className="hover:shadow-md">
+                  <Card
+                    key={index}
+                    className="border-stone-200 hover:border-stone-300 hover:shadow-md"
+                  >
                     <Link href={"posts/" + post.urlSlug}>
                       <CardHeader>
                         <CardTitle>{post.title}</CardTitle>
